@@ -4,6 +4,15 @@ class SectionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @section = sections(:one)
   end
+  
+  test "shouldn't find missing section" do 
+    assert Section.where("number like ?", "10").length == 0
+  end
+
+  test "searches return 200" do
+    get search_sections_url, params: { search: "10" }
+    assert_equal 200, status
+  end
 
   test "should get index" do
     get sections_url

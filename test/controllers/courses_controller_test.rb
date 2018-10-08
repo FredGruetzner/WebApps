@@ -4,6 +4,19 @@ class CoursesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @course = courses(:one)
   end
+  
+  test "shouldn't find missing section" do 
+	assert Course.where("name like ?", "Latin 12").length == 0
+  end
+
+  test "should find a section" do
+    assert Course.where("name like ?", "MyString").length == 2
+  end
+
+  test "searches return 200" do
+    get search_courses_url, params: { search: "Latin 12" }
+    assert_equal 200, status
+  end
 
   test "should get index" do
     get courses_url
