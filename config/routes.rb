@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
-  devise_scope: user do
-    get '/users/sign-out => 'devise/session#destroy'
+  devise_scope :user do
+    #get '/users/sign-out => 'devise/session#destroy'
   end
   resources :students do
     collection do 

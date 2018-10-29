@@ -8,7 +8,19 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class='<%= controller.controller_name%>'>
+    <table class="nav-bar">
+    <tr>
+      <th><%= link_to 'Courses', courses_path %></th>
+      <th><%= link_to 'Students', students_path %></th>
+      <th><%= link_to 'Sections', sections_path %></th>
+    </tr>
+    <tr>
+      <td><%= link_to 'New Course', new_course_path %></td>
+      <td><%= link_to 'New Student', new_student_path %></td>
+      <td><%= link_to 'New Section', new_section_path %></td>
+    </tr>
+</table>
     <%= yield %>
   </body>
 </html>
